@@ -1,4 +1,4 @@
-# Semantic Watermark Demo
+# Persistent Semantic Watermark
 
 ## Project Structure
 
