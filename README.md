@@ -1,6 +1,6 @@
 # Semantic Watermark Demo
 
-## 项目结构
+## Project Structure
 
 ```text
 semantic-watermark-demo/
@@ -21,47 +21,47 @@ semantic-watermark-demo/
 └── outputs/
 ```
 
-## 环境要求
+## Requirements
 
 * Python 3.10
 * uv
 * PyTorch
-* CUDA GPU 可选
+* CUDA-capable GPU optional
 
-固定 Python 版本：
+Install and pin Python 3.10:
 
 ```bash
 uv python install 3.10
 uv python pin 3.10
 ```
 
-安装项目依赖：
+Install the project dependencies:
 
 ```bash
 uv add sentence-transformers transformers pyyaml
 uv sync
 ```
 
-PyTorch 请根据本机 CUDA 驱动单独安装。例如使用 CUDA 12.1：
+Install PyTorch separately according to your local CUDA driver version. For example, to use CUDA 12.1:
 
 ```bash
 uv add torch --index https://download.pytorch.org/whl/cu121
 ```
 
-检查 GPU：
+Check GPU availability:
 
 ```bash
 uv run python -c "import torch; print(torch.__version__); print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU')"
 ```
 
-## 生成水印文本
+## Generate Watermarked Text
 
 ```bash
 uv run python generate.py \
   --prompt "Explain the risks of phishing emails."
 ```
 
-指定 GPU：
+Specify a GPU device:
 
 ```bash
 uv run python generate.py \
@@ -69,13 +69,13 @@ uv run python generate.py \
   --device cuda:0
 ```
 
-生成结果默认保存在：
+By default, the generated result is saved to:
 
 ```text
 outputs/results/generation.json
 ```
 
-## 文本验证
+## Text Verification
 
 ```bash
 uv run python verify.py \
@@ -83,7 +83,7 @@ uv run python verify.py \
   --text "Phishing emails may steal personal information."
 ```
 
-## 模型验证
+## Model Verification
 
 ```bash
 uv run python verify.py \
@@ -91,7 +91,7 @@ uv run python verify.py \
   --max-probes 3
 ```
 
-验证训练后的模型：
+Verify a trained model:
 
 ```bash
 uv run python verify.py \
@@ -100,7 +100,7 @@ uv run python verify.py \
   --max-probes 3
 ```
 
-## 联合验证
+## Joint Verification
 
 ```bash
 uv run python verify.py \
@@ -110,13 +110,13 @@ uv run python verify.py \
   --max-probes 3
 ```
 
-## 模型训练
+## Model Training
 
 ```bash
 uv run python train.py
 ```
 
-指定 GPU、训练轮数和批大小：
+Specify the GPU device, number of training epochs, and batch size:
 
 ```bash
 uv run python train.py \
@@ -125,21 +125,21 @@ uv run python train.py \
   --batch-size 2
 ```
 
-训练后的模型默认保存在：
+By default, the trained model is saved to:
 
 ```text
 outputs/checkpoints/final
 ```
 
-## 配置说明
+## Configuration
 
-主要配置位于 `config.yaml`：
+The main configuration options are defined in `config.yaml`:
 
-* `project.device`：运行设备，可设置为 `auto`、`cpu`、`cuda` 或 `cuda:0`
-* `model.generator_name`：生成模型名称
-* `model.encoder_name`：多语言语义编码模型
-* `watermark.secret_key`：语义锚点密钥
-* `watermark.num_anchors`：锚点数量
-* `watermark.num_candidates`：候选生成数量
-* `verification.*_threshold`：验证阈值
-* `training.lambda_*`：各训练损失权重
+* `project.device`: Runtime device. Supported values include `auto`, `cpu`, `cuda`, and `cuda:0`.
+* `model.generator_name`: Name of the text generation model.
+* `model.encoder_name`: Name of the multilingual semantic encoder model.
+* `watermark.secret_key`: Secret key used to generate semantic anchors.
+* `watermark.num_anchors`: Number of semantic anchors.
+* `watermark.num_candidates`: Number of candidate outputs to generate.
+* `verification.*_threshold`: Verification thresholds.
+* `training.lambda_*`: Weight assigned to each training loss term.
