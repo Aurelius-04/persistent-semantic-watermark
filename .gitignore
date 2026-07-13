@@ -1,0 +1,91 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# uv
+.uv/
+.python-version
+
+# Build and packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test and coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Type checking and linting
+.mypy_cache/
+.ruff_cache/
+.pyright/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Model caches
+.cache/
+huggingface/
+transformers_cache/
+sentence_transformers/
+
+# Training outputs
+outputs/
+checkpoints/
+results/
+runs/
+wandb/
+
+# Model files
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+
+# Generated data
+*.npy
+*.npz
+*.pkl
+*.pickle
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.swp
+*.swo
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local configuration overrides
+config.local.yaml
+config.local.yml
